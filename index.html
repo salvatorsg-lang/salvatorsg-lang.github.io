@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Jonny Chai — Customer Success & AI. Helping customers adopt, grow, and stay. Based in Singapore.">
+  <title>Jonny Chai — Customer Success &amp; AI</title>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    // Apply saved theme before paint (default: light).
+    try { if (localStorage.getItem('jc-theme') === 'dark') document.documentElement.classList.add('dark'); } catch (e) {}
+  </script>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle dark mode">Dark mode</button>
+      <div class="mark" aria-hidden="true">JC</div>
+      <h1>Jonny Chai</h1>
+      <p class="headline">Customer Success &amp; AI — helping customers adopt, grow, and stay.</p>
+      <p class="location">Singapore · Singapore Permanent Resident</p>
+      <div class="stats" aria-label="Headline numbers">
+        <div class="stat"><span class="stat-num" data-target="100" data-suffix="+">0</span><span class="stat-label">agencies managed across APAC</span></div>
+        <div class="stat"><span class="stat-num" data-target="30" data-prefix="+" data-suffix="%">0</span><span class="stat-label">portfolio revenue, year over year</span></div>
+      </div>
+      <nav class="links" aria-label="Contact links">
+        <a href="mailto:Salvatorsg@gmail.com">Salvatorsg@gmail.com</a>
+        <a href="https://www.linkedin.com/in/jonny-chai" target="_blank" rel="noopener">LinkedIn</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="about">
+      <h2>About</h2>
+      <p>6+ years managing 100+ advertising agencies as an embedded Meta partner across APAC, built on 12+ years in enterprise technology.</p>
+      <p>Portfolio revenue +30% year over year. Highest MTD Revenue Achiever, Agency SEA, September 2024.</p>
+      <p>I like work where I stay close to the customer — onboarding them properly, helping them get value out of the product, and keeping them around. These days I'm also building with AI: short-form video and automation that make the customer-facing work faster and better.</p>
+    </section>
+
+    <section id="health-demo">
+      <h2>Try it — customer health score</h2>
+      <p>Sample data. This is the same scoring I use in my <a href="https://github.com/salvatorsg-lang/cs-toolkit" target="_blank" rel="noopener">Customer Success Toolkit</a>: adoption, support tickets, executive sponsor, and QBR recency, out of 100. Move the sliders and watch the score change.</p>
+      <div class="demo">
+        <label>Adoption — % of licensed seats active: <output id="adoption-out">68%</output>
+          <input type="range" id="adoption" min="0" max="100" value="68">
+        </label>
+        <label>Support tickets in the last 90 days: <output id="tickets-out">4</output>
+          <input type="range" id="tickets" min="0" max="15" value="4">
+        </label>
+        <label class="check"><input type="checkbox" id="sponsor" checked> Active executive sponsor</label>
+        <label>Days since last QBR: <output id="qbr-out">45</output>
+          <input type="range" id="qbr" min="0" max="180" value="45">
+        </label>
+        <div class="demo-result">
+          <div class="demo-score"><span id="demo-score">–</span><span class="demo-max">/ 100</span></div>
+          <div class="demo-band" id="demo-band">–</div>
+          <p class="demo-reason" id="demo-reason"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="playground">
+      <h2>AI prompt playground</h2>
+      <p>Three prompts I use with an AI assistant for CS work. Pick a scenario to see the prompt and a sample output. Sample data — the fictional Northwind Media example from my toolkit.</p>
+      <div class="tabs" role="tablist" aria-label="Prompt scenarios">
+        <button class="tab active" type="button" data-scenario="qbr" role="tab" aria-selected="true">QBR prep</button>
+        <button class="tab" type="button" data-scenario="churn" role="tab" aria-selected="false">Churn-risk triage</button>
+        <button class="tab" type="button" data-scenario="escalation" role="tab" aria-selected="false">Escalation summary</button>
+      </div>
+
+      <div class="panel active" id="panel-qbr">
+        <h3>The prompt</h3>
+        <pre class="prompt">Act as a customer success manager preparing a quarterly business review.
+
+Account: [name]
+Quarter: [Q1/Q2/Q3/Q4 + year]
+Account notes: [paste]
+Usage numbers: [paste — spend, adoption, active campaigns/users]
+
+Give me a QBR outline with:
+1. Top 3 wins this quarter, each with the number that proves it
+2. Adoption — what's being used, what isn't, and why it matters
+3. Top 3 risks, each with one concrete next step
+4. Expansion talking points — where the customer could get more value
+5. Three questions to ask the customer in the room
+
+Keep it to one page. Flag anything you can't verify from what I pasted.</pre>
+        <button class="copy-btn" type="button" data-copy="panel-qbr">Copy prompt</button>
+        <h3>Sample output — Northwind Media (fictional)</h3>
+        <div class="sample">
+          <p><strong>Wins:</strong> campaign reporting time cut from 2 days to 4 hours for the two teams using it; two new client teams onboarded; zero downtime incidents.</p>
+          <p><strong>Adoption:</strong> 61% seat usage; the reporting module is the gap — worth a live demo in the QBR once the export issue is fixed.</p>
+          <p><strong>Risks:</strong> reporting exports failing; champion left, replacement not onboarded; sponsor hasn't attended in 2 months — each with a named owner and date.</p>
+          <p><strong>Expansion:</strong> the third client team is still on manual reporting — the natural next step, but only after the export issue is resolved. Don't pitch expansion on top of a broken feature.</p>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-churn">
+        <h3>The prompt</h3>
+        <pre class="prompt">Help me triage a churn risk and draft a save plan.
+
+Account: [name]
+Usage trend: [e.g. active users down 40% in 6 weeks]
+Ticket themes: [paste]
+Last meaningful contact: [date + who]
+Contract ends: [date]
+
+Give me:
+1. The most likely reason they're disengaging, in one paragraph
+2. A save plan as a table: action | owner | date | what "done" looks like
+3. What to say in the first outreach message — 3 sentences, human tone, no jargon
+4. One thing I should NOT do yet
+
+Be direct. Don't soften bad news.</pre>
+        <button class="copy-btn" type="button" data-copy="panel-churn">Copy prompt</button>
+        <h3>Sample output — Northwind Media (fictional)</h3>
+        <div class="sample">
+          <p><strong>Most likely reason:</strong> active users fell from 16 to 11 in 6 weeks because reporting exports keep failing — and the champion who would have flagged it left 5 weeks ago, so nobody inside is pushing usage.</p>
+          <p><strong>Save plan:</strong> fix the reporting export bug or put a workaround in place (Support + me, this week); onboard the new champion with a 30-minute intro and a quick win (me, next week); re-engage the sponsor with a one-page value summary before the QBR (me, before QBR).</p>
+          <p><strong>First outreach:</strong> "Hi — I noticed reporting exports have been failing for your team, and I know that's slowing down your client reporting. I've got our team on it this week, and I'd like 30 minutes with you and your new lead to walk through a fix and a quick win. Does Thursday work?"</p>
+          <p><strong>Don't do yet:</strong> don't pitch expansion to the third team until the export issue is resolved.</p>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-escalation">
+        <h3>The prompt</h3>
+        <pre class="prompt">Turn this messy ticket thread into a one-paragraph executive summary.
+
+Ticket thread: [paste]
+Impact: [who is affected, how badly]
+Current status: [where things stand]
+
+Give me:
+1. One paragraph: what happened, impact, status, next step — plain language, no blame
+2. A timeline: date + one line per key event
+3. The one thing leadership should know that isn't obvious from the thread</pre>
+        <button class="copy-btn" type="button" data-copy="panel-escalation">Copy prompt</button>
+        <h3>Sample output — Northwind Media (fictional)</h3>
+        <div class="sample">
+          <p><strong>Summary:</strong> reporting exports have failed 5 times in the last 90 days for Northwind Media's 18-person team, which is why active users dropped from 16 to 11. Support has a workaround in testing and a fix targeted for this week; the next step is confirming the fix with the two affected teams and re-running their client reports.</p>
+          <p><strong>What leadership should know:</strong> the tickets look like one issue, but the real risk is the champion who left 5 weeks ago — the replacement hasn't been onboarded, so there's nobody inside pushing usage while this is broken.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="before-after">
+      <h2>Before / after — messy notes to QBR outline</h2>
+      <p>Sample data — fictional. What I paste into the AI, and what comes back after I check it.</p>
+      <div class="ba-grid">
+        <div class="ba-col ba-before">
+          <h3>Before — rough call notes</h3>
+          <p>agency says usage down, sarah left, tickets piling up, renewal in 2 months, not sure who owns it now, reporting thing broken again, sponsor hasn't shown up in ages, third team still doing manual reports, want to show value at qbr but not sure what to lead with</p>
+        </div>
+        <div class="ba-col ba-after">
+          <h3>After — QBR outline</h3>
+          <p><strong>Wins:</strong> reporting time cut from 2 days to 4 hours; two new teams onboarded; zero downtime.</p>
+          <p><strong>Adoption:</strong> 61% seats active; reporting module is the gap.</p>
+          <p><strong>Risks:</strong> export bug (fix this week), no champion (onboard next week), sponsor disengaged (value summary before QBR).</p>
+          <p><strong>Next steps:</strong> fix first, then demo reporting live, then talk expansion.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <ul class="jobs">
+        <li>
+          <h3>Agency Partner Manager — Meta via TDCX, Singapore</h3>
+          <p class="dates">06/2020 – 08/2026</p>
+          <p>Managed 100+ agencies across APAC — adoption, enablement, QBRs, retention and expansion.</p>
+        </li>
+        <li>
+          <h3>Product Specialist — ANTlabs</h3>
+          <p class="dates">09/2019 – 06/2020</p>
+        </li>
+        <li>
+          <h3>IIoT Sales / Business Development — Anewtech</h3>
+          <p class="dates">10/2018 – 05/2019</p>
+        </li>
+        <li>
+          <h3>Technical Specialist / APAC Account Manager — Nexcomm-Asia</h3>
+          <p class="dates">10/2016 – 09/2018</p>
+        </li>
+        <li>
+          <h3>Senior System Engineer — VRnet</h3>
+          <p class="dates">12/2015 – 10/2016</p>
+        </li>
+        <li>
+          <h3>ICT Support Account Manager — DTI</h3>
+          <p class="dates">12/2014 – 12/2015</p>
+        </li>
+        <li>
+          <h3>System Engineer / Pre-Sales — Netxcel</h3>
+          <p class="dates">08/2008 – 12/2014</p>
+        </li>
+        <li>
+          <h3>Technical Support / Backend Escalation — Pacnet</h3>
+          <p class="dates">03/2007 – 07/2008</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="ai-video">
+      <h2>AI Video Work</h2>
+      <p>Short AI video experiments — made with AI tools, labelled as AI video, not client work.</p>
+      <p><strong>“I tried AI in Singapore”</strong> — a series of short AI video experiments on Instagram <a href="https://www.instagram.com/nongclickgift/" target="_blank" rel="noopener">@nongclickgift</a>:</p>
+      <div class="embeds">
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DfUIaBoDEJ5/" data-instgrm-version="14"></blockquote>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DfUI62VDKkz/" data-instgrm-version="14"></blockquote>
+        <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DfUI9yFjJsl/" data-instgrm-version="14"></blockquote>
+      </div>
+      <script async src="https://www.instagram.com/embed.js"></script>
+      <ul class="reels">
+        <li><a href="https://www.instagram.com/reel/DfUIaBoDEJ5/" target="_blank" rel="noopener">Yaya gestures — AI video</a></li>
+        <li><a href="https://www.instagram.com/reel/DfUI62VDKkz/" target="_blank" rel="noopener">AI comic character drift — AI video</a></li>
+        <li><a href="https://www.instagram.com/reel/DfUI9yFjJsl/" target="_blank" rel="noopener">I tried AI in Singapore — AI video</a></li>
+      </ul>
+      <p>I'm also building AI-assisted short-form video editing as a service for creators and small businesses — raw footage and a script in, a finished 30–60 second vertical short out.</p>
+    </section>
+
+    <section id="skills">
+      <h2>Skills &amp; Certifications</h2>
+      <h3>Skills</h3>
+      <ul class="tags">
+        <li>Customer-success planning</li>
+        <li>Adoption &amp; enablement</li>
+        <li>QBRs</li>
+        <li>Retention &amp; renewal</li>
+        <li>Expansion</li>
+        <li>Troubleshooting</li>
+        <li>Proofs of concept</li>
+        <li>SLA support</li>
+        <li>Demos</li>
+        <li>Meta ads</li>
+        <li>Google Analytics</li>
+        <li>ROAS analytics</li>
+      </ul>
+      <p><strong>Markets:</strong> Singapore, Malaysia, APAC.</p>
+      <p><strong>Languages:</strong> English, Mandarin, Bahasa Melayu — fluent.</p>
+      <h3>Certifications</h3>
+      <ul>
+        <li>Meta Certified Media Buying Professional</li>
+        <li>Meta Certified Media Measurement Specialist</li>
+      </ul>
+      <h3>Education</h3>
+      <ul>
+        <li>Northumbria University Singapore — BA (Hons) Commerce, Mass Communication with Business (2019)</li>
+        <li>Kaplan — Diploma in Commerce, Hospitality and Tourism Management (2016)</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Best way to reach me is email or LinkedIn.</p>
+      <p><a href="mailto:Salvatorsg@gmail.com">Salvatorsg@gmail.com</a></p>
+      <p><a href="https://www.linkedin.com/in/jonny-chai" target="_blank" rel="noopener">linkedin.com/in/jonny-chai</a></p>
+      <p class="privacy-note">A fuller recruiter pack is available on request.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>Personal portfolio of Jonny Chai, Singapore.</p>
+      <p class="privacy-note">Privacy: this public page shows highlights only. Fuller detail is shared directly with recruiters on request. Phone numbers and salary details are never published here.</p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

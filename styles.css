@@ -1,0 +1,331 @@
+/* Jonny Chai — portfolio. Clean light theme, dark text, no framework. */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  color: #1c2333;
+  background: #fafafa;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Hero */
+.hero {
+  background: #14213d;
+  color: #f4f6f8;
+  padding: 64px 0 48px;
+}
+
+.mark {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #fca311;
+  color: #14213d;
+  font-size: 26px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  margin: 0 0 8px;
+  font-size: 40px;
+  line-height: 1.15;
+}
+
+.headline {
+  font-size: 20px;
+  margin: 0 0 8px;
+  color: #dbe4ee;
+}
+
+.location {
+  margin: 0 0 20px;
+  color: #9fb0c3;
+}
+
+.links a {
+  color: #fca311;
+  margin-right: 20px;
+  font-weight: 600;
+}
+
+/* Sections */
+main section {
+  padding: 36px 0 8px;
+  border-bottom: 1px solid #e3e6ea;
+}
+
+main section:last-child { border-bottom: none; }
+
+h2 {
+  font-size: 24px;
+  margin: 0 0 12px;
+  color: #14213d;
+}
+
+h3 {
+  font-size: 18px;
+  margin: 20px 0 6px;
+  color: #14213d;
+}
+
+p { margin: 0 0 12px; }
+
+a { color: #1d5fb8; }
+a:hover { text-decoration: none; }
+.hero a:hover { color: #ffd27a; }
+
+/* Jobs */
+.jobs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.jobs li { margin-bottom: 20px; }
+
+.jobs h3 { margin: 0; }
+
+.dates {
+  margin: 2px 0 4px;
+  font-size: 14px;
+  color: #6b7686;
+  font-weight: 600;
+}
+
+/* Reels */
+.reels { padding-left: 20px; }
+.reels li { margin-bottom: 6px; }
+
+/* Skill tags */
+.tags {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tags li {
+  background: #e8eef5;
+  color: #14213d;
+  border-radius: 999px;
+  padding: 5px 13px;
+  font-size: 14px;
+}
+
+/* Footer */
+footer {
+  margin-top: 40px;
+  padding: 24px 0 32px;
+  background: #eef1f4;
+  color: #6b7686;
+  font-size: 14px;
+}
+
+footer p { margin: 0; }
+
+/* Mobile */
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .hero { padding: 48px 0 36px; }
+  .hero h1 { font-size: 32px; }
+  .headline { font-size: 18px; }
+}
+
+/* Theme toggle */
+.theme-toggle {
+  float: right;
+  background: transparent;
+  color: #fca311;
+  border: 1px solid #fca311;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.theme-toggle:hover { background: rgba(252, 163, 17, 0.15); }
+
+/* Hero stats */
+.stats {
+  display: flex;
+  gap: 32px;
+  margin: 24px 0;
+}
+.stat { display: flex; flex-direction: column; }
+.stat-num {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #fca311;
+}
+.stat-label {
+  font-size: 14px;
+  color: #9fb0c3;
+  max-width: 180px;
+}
+
+/* Health demo */
+.demo {
+  background: #eef1f4;
+  border: 1px solid #e3e6ea;
+  border-radius: 12px;
+  padding: 20px;
+}
+.demo label {
+  display: block;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+.demo label.check { font-weight: 600; }
+.demo input[type="range"] { width: 100%; accent-color: #1d5fb8; }
+.demo input[type="checkbox"] { accent-color: #1d5fb8; margin-right: 8px; }
+.demo output { font-weight: 700; color: #14213d; }
+.demo-result {
+  border-top: 1px solid #d5dae0;
+  padding-top: 16px;
+  text-align: center;
+}
+.demo-score { font-size: 40px; font-weight: 700; color: #14213d; }
+.demo-max { font-size: 18px; color: #6b7686; font-weight: 400; }
+.demo-band {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 4px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+  color: #fff;
+  background: #6b7686;
+}
+.demo-band.band-green { background: #1e7d46; }
+.demo-band.band-amber { background: #b7791f; }
+.demo-band.band-red { background: #b3261e; }
+.demo-reason { margin: 12px 0 0; color: #6b7686; }
+
+/* Prompt playground */
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.tab {
+  background: #e8eef5;
+  color: #14213d;
+  border: 1px solid #d5dae0;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.tab.active { background: #14213d; color: #f4f6f8; border-color: #14213d; }
+.panel { display: none; }
+.panel.active { display: block; }
+.prompt {
+  background: #14213d;
+  color: #e8eef5;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  margin: 0 0 12px;
+}
+.copy-btn {
+  background: #1d5fb8;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+.copy-btn:hover { background: #174a8f; }
+.sample {
+  background: #eef1f4;
+  border-left: 4px solid #fca311;
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+}
+.sample p { margin: 0 0 8px; }
+.sample p:last-child { margin-bottom: 0; }
+
+/* Before / after */
+.ba-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.ba-col {
+  border-radius: 12px;
+  padding: 16px;
+}
+.ba-col h3 { margin-top: 0; }
+.ba-before { background: #f7e8e8; border: 1px solid #e5c5c5; }
+.ba-after { background: #e9f4ec; border: 1px solid #bcd8c3; }
+.ba-col p { margin: 0 0 10px; }
+.ba-col p:last-child { margin-bottom: 0; }
+@media (max-width: 560px) {
+  .ba-grid { grid-template-columns: 1fr; }
+}
+
+/* Instagram embeds */
+.embeds {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 12px 0;
+}
+.embeds blockquote { margin: 0; min-width: 0 !important; }
+@media (max-width: 560px) {
+  .embeds { grid-template-columns: 1fr; }
+}
+
+/* Recruiter note + privacy note */
+.recruiter-note {
+  color: #ffd27a;
+  font-size: 15px;
+  margin: 0 0 20px;
+}
+.privacy-note {
+  font-size: 14px;
+  color: #6b7686;
+  margin-top: 16px;
+}
+footer .privacy-note { margin-top: 8px; }
+
+/* ---------- Dark theme ---------- */
+html.dark body { background: #101623; color: #dde3ec; }
+html.dark .hero { background: #0b1220; }
+html.dark h2, html.dark h3 { color: #f4f6f8; }
+html.dark a { color: #7aa7e8; }
+html.dark main section { border-bottom-color: #232c3d; }
+html.dark .dates { color: #8b98ab; }
+html.dark .tags li { background: #22304a; color: #dde3ec; }
+html.dark footer { background: #0b1220; color: #8b98ab; }
+html.dark .demo { background: #182238; border-color: #2a3752; }
+html.dark .demo output { color: #f4f6f8; }
+html.dark .demo-result { border-top-color: #2a3752; }
+html.dark .demo-score { color: #f4f6f8; }
+html.dark .demo-reason { color: #9fb0c3; }
+html.dark .tab { background: #22304a; color: #dde3ec; border-color: #2a3752; }
+html.dark .tab.active { background: #fca311; color: #14213d; border-color: #fca311; }
+html.dark .sample { background: #182238; }
+html.dark .ba-before { background: #2c1d1d; border-color: #4a2c2c; }
+html.dark .ba-after { background: #16281c; border-color: #24402c; }
+html.dark .privacy-note { color: #8b98ab; }
+html.dark .stat-label { color: #8b98ab; }
+
